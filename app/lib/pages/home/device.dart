@@ -183,7 +183,7 @@ class _ConnectedDeviceState extends State<ConnectedDevice> {
             const SizedBox(height: 8),
             TextButton(
               onPressed: () async {
-                await IntercomManager.instance.displayChargingArticle(provider.pairedDevice?.name ?? 'DevKit1');
+                await 
               },
               child: const Text(
                 'Issues charging?',

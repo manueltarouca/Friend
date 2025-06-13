@@ -12,7 +12,7 @@ import 'package:omi/backend/schema/transcript_segment.dart';
 import 'package:omi/providers/app_provider.dart';
 import 'package:omi/providers/conversation_provider.dart';
 import 'package:omi/utils/analytics/mixpanel.dart';
-import 'package:instabug_flutter/instabug_flutter.dart';
+
 import 'package:tuple/tuple.dart';
 
 class ConversationDetailProvider extends ChangeNotifier with MessageNotifierMixin {

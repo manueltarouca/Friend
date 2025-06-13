@@ -14,7 +14,7 @@ import 'package:omi/backend/http/api/notifications.dart';
 import 'package:omi/backend/schema/message.dart';
 import 'package:omi/main.dart';
 import 'package:omi/pages/home/page.dart';
-import 'package:intercom_flutter/intercom_flutter.dart';
+
 import 'package:omi/services/notifications/notification_interface.dart';
 import 'package:omi/utils/platform/platform_service.dart';
 

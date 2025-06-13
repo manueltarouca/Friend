@@ -17,7 +17,7 @@ import 'package:omi/utils/other/temp.dart';
 import 'package:omi/widgets/device_widget.dart';
 import 'package:omi/widgets/dialog.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:intercom_flutter/intercom_flutter.dart';
+
 import 'package:provider/provider.dart';
 
 import 'percentage_bar_progress.dart';
@@ -355,7 +355,7 @@ class _SpeechProfilePageState extends State<SpeechProfilePage> with TickerProvid
                                               context,
                                               () => Navigator.pop(context),
                                               () async {
-                                                await IntercomManager.instance.displayFirmwareUpdateArticle();
+                                                await 
                                               },
                                               'Device Update Required',
                                               'Your current device has an old firmware version (1.0.2). Please check our guide on how to update it.',

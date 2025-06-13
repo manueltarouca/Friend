@@ -42,9 +42,6 @@ dependencies:
   google_sign_in_all_platforms: 1.1.0
 
   # Analytics and Support
-  intercom_flutter: 9.2.10
-  mixpanel_flutter: ^2.2.0
-  posthog_flutter: ^4.10.2
 
   # Utils
   collection: ^1.18.0
@@ -66,7 +63,6 @@ dependencies:
   envied: ^0.5.4+1
   awesome_notifications_core: ^0.9.3
   awesome_notifications: any
-  instabug_flutter: ^14.3.1
   nordic_dfu: ^6.1.4+hotfix
   mcumgr_flutter: ^0.4.2
   flutter_archive: ^6.0.3

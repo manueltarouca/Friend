@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:omi/providers/onboarding_provider.dart';
 import 'package:omi/utils/platform/platform_service.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:intercom_flutter/intercom_flutter.dart';
+
 import 'package:provider/provider.dart';
 
 class PermissionsDesktopWidget extends StatefulWidget {

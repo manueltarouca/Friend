@@ -5,7 +5,6 @@ import 'package:omi/backend/schema/memory.dart';
 import 'package:omi/backend/schema/conversation.dart';
 import 'package:omi/env/env.dart';
 import 'package:omi/utils/platform/platform_service.dart';
-import 'package:mixpanel_flutter/mixpanel_flutter.dart';
 
 class MixpanelManager {
   static final MixpanelManager _instance = MixpanelManager._internal();

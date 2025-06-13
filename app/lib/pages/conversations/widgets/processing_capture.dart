@@ -86,12 +86,12 @@ class _ConversationCaptureWidgetState extends State<ConversationCaptureWidget> {
       }
       if (recordingState == RecordingState.systemAudioRecord) {
         await provider.stopSystemAudioRecording();
-        // MixpanelManager().track("System Audio Recording Stopped");
+        // 
       } else if (recordingState == RecordingState.initialising) {
         debugPrint('initialising, have to wait');
       } else {
         await provider.streamSystemAudioRecording();
-        // MixpanelManager().track("System Audio Recording Started");
+        // 
       }
     } else {
       // Existing phone mic logic

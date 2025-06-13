@@ -45,11 +45,11 @@ import 'package:omi/utils/alerts/app_snackbar.dart';
 import 'package:omi/utils/analytics/growthbook.dart';
 import 'package:omi/utils/features/calendar.dart';
 import 'package:omi/utils/logger.dart';
-import 'package:instabug_flutter/instabug_flutter.dart';
+
 import 'package:omi/utils/platform/platform_service.dart';
 import 'package:opus_dart/opus_dart.dart';
 import 'package:opus_flutter/opus_flutter.dart' as opus_flutter;
-import 'package:posthog_flutter/posthog_flutter.dart';
+
 import 'package:provider/provider.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:omi/utils/platform/platform_manager.dart';
@@ -94,7 +94,7 @@ Future<void> initPostHog() async {
   config.debug = true;
   config.captureApplicationLifecycleEvents = true;
   config.host = 'https://us.i.posthog.com';
-  await Posthog().setup(config);
+  await 
 }
 
 void main() async {

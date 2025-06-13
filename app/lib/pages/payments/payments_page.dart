@@ -160,12 +160,12 @@ class _PaymentsPageState extends State<PaymentsPage> {
         (
           PaymentMethodConfig.stripe(
             onManageTap: () {
-              MixpanelManager().track('Manage Stripe');
+              
               routeToPage(context, const StripeConnectSetup());
             },
             onSetActiveTap: () {
               provider.setActiveMethod(PaymentMethodType.stripe);
-              MixpanelManager().track('Set Stripe as active');
+              
             },
             isConnected: true,
             isActive: false,
@@ -176,12 +176,12 @@ class _PaymentsPageState extends State<PaymentsPage> {
         (
           PaymentMethodConfig.paypal(
             onManageTap: () {
-              MixpanelManager().track('Manage PayPal');
+              
               routeToPage(context, const PaypalSetupPage());
             },
             onSetActiveTap: () {
               provider.setActiveMethod(PaymentMethodType.paypal);
-              MixpanelManager().track('Set PayPal as active');
+              
             },
             isConnected: true,
             isActive: false,
@@ -192,7 +192,7 @@ class _PaymentsPageState extends State<PaymentsPage> {
         (
           PaymentMethodConfig.stripe(
             onManageTap: () {
-              MixpanelManager().track('Manage Stripe');
+              
               routeToPage(context, const StripeConnectSetup());
             },
             isConnected: false,
@@ -203,7 +203,7 @@ class _PaymentsPageState extends State<PaymentsPage> {
         (
           PaymentMethodConfig.paypal(
             onManageTap: () {
-              MixpanelManager().track('Manage PayPal');
+              
               routeToPage(context, const PaypalSetupPage());
             },
             isConnected: false,

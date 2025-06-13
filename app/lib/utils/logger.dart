@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intercom_flutter/intercom_flutter.dart';
+
 import 'package:talker_flutter/talker_flutter.dart';
 
 class Logger {

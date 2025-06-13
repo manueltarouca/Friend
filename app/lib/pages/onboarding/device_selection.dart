@@ -4,7 +4,6 @@ import 'package:omi/pages/onboarding/wrapper.dart';
 
 import 'package:omi/pages/persona/twitter/social_profile.dart';
 import 'package:omi/utils/other/temp.dart';
-import 'package:posthog_flutter/posthog_flutter.dart';
 
 class DeviceSelectionPage extends StatefulWidget {
   const DeviceSelectionPage({super.key});
@@ -85,9 +84,7 @@ class _DeviceSelectionPageState extends State<DeviceSelectionPage> with SingleTi
                       children: [
                         ElevatedButton(
                           onPressed: () async {
-                            await Posthog().capture(
-                              eventName: 'clicked_get_started',
-                            );
+                            await 
                             routeToPage(context, const OnboardingWrapper());
                           },
                           style: ElevatedButton.styleFrom(

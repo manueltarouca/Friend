@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:omi/utils/platform/platform_service.dart';
-import 'package:instabug_flutter/instabug_flutter.dart';
 
 /// Platform-aware manager for Instabug
 /// Handles macOS compatibility internally without exposing platform checks

@@ -1,0 +1,157 @@
+version: '3.8'
+
+services:
+  # Ollama service for local LLM
+  ollama:
+    image: ollama/ollama:latest
+    container_name: omi-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    deploy:
+      resources:
+        limits:
+          memory: 16G
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]  # Optional: for GPU acceleration
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # Backend API service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: omi-backend
+    ports:
+      - "8000:8000"
+    environment:
+      # LLM Configuration
+      - LLM_PROVIDER=ollama
+      - OLLAMA_HOST=http://ollama:11434
+      - OLLAMA_MODEL=llama3
+      - OLLAMA_EMBEDDING_MODEL=nomic-embed-text
+      
+      # Database Configuration
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgresql://omi:omipassword@postgres:5432/omi
+      
+      # Disable telemetry
+      - DISABLE_TELEMETRY=true
+      - DISABLE_ANALYTICS=true
+      
+      # Other settings
+      - ENVIRONMENT=local
+      - DEBUG=true
+    depends_on:
+      ollama:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - ./models:/app/models
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: omi-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+
+  # PostgreSQL for main database
+  postgres:
+    image: postgres:15-alpine
+    container_name: omi-postgres
+    environment:
+      - POSTGRES_USER=omi
+      - POSTGRES_PASSWORD=omipassword
+      - POSTGRES_DB=omi
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U omi"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ChromaDB for vector storage (alternative to Pinecone)
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: omi-chromadb
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - ANONYMIZED_TELEMETRY=FALSE
+    restart: unless-stopped
+
+  # Whisper service for speech-to-text
+  whisper:
+    build:
+      context: .
+      dockerfile: Dockerfile.whisper
+    container_name: omi-whisper
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./models/whisper:/models
+      - audio_temp:/tmp/audio
+    environment:
+      - WHISPER_MODEL=base
+      - WHISPER_THREADS=4
+    restart: unless-stopped
+
+  # Nginx reverse proxy (optional)
+  nginx:
+    image: nginx:alpine
+    container_name: omi-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+    driver: local
+  redis_data:
+    driver: local
+  postgres_data:
+    driver: local
+  chroma_data:
+    driver: local
+  audio_temp:
+    driver: local
+
+networks:
+  default:
+    name: omi-network

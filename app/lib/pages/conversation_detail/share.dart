@@ -107,7 +107,6 @@ void _exportSummaryMarkdown(ServerConversation conversation) async {
 
     ## Title: ${structured.title}
 
-
     ### Action Items
     ${structured.actionItems.map((e) => '- ${e.description}').join('\n')}
 

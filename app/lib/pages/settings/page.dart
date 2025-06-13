@@ -10,7 +10,7 @@ import 'package:omi/pages/settings/widgets.dart';
 import 'package:omi/utils/other/temp.dart';
 import 'package:omi/utils/platform/platform_service.dart';
 import 'package:omi/widgets/dialog.dart';
-import 'package:intercom_flutter/intercom_flutter.dart';
+
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 

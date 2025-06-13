@@ -220,8 +220,7 @@ class ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
                                             }
                                           },
                                           onSelectText: () {
-                                            MixpanelManager().track('Chat Message Text Selected',
-                                                properties: {'message': message.text});
+                                            
                                             routeToPage(context, SelectTextScreen(message: message));
                                           },
                                           onShare: () {
@@ -259,8 +258,7 @@ class ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
                                                     Navigator.of(context).pop();
                                                   },
                                                   () {
-                                                    MixpanelManager().track('Chat Message Reported',
-                                                        properties: {'message': message.text});
+                                                    
                                                     Navigator.of(context).pop();
                                                     Navigator.of(context).pop();
                                                     context.read<MessageProvider>().removeLocalMessage(message.id);

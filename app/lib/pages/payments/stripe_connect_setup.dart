@@ -234,7 +234,7 @@ class _StripeConnectSetupState extends State<StripeConnectSetup> with SingleTick
                     onPressed: provider.stripeConnectionState == PaymentConnectionState.inComplete ||
                             provider.selectedCountryId != null
                         ? () async {
-                            MixpanelManager().track('Stripe Connect Started');
+                            
                             var url = await provider.connectStripe();
                             if (url != null) {
                               provider.startStripePolling();
@@ -313,7 +313,7 @@ class _StripeConnectSetupState extends State<StripeConnectSetup> with SingleTick
                   AnimatedLoadingButton(
                     text: "Failed? Try Again",
                     onPressed: () async {
-                      MixpanelManager().track('Stripe Connect Retry');
+                      
                       var res = await provider.connectStripe();
                       if (res != null) {
                         provider.startStripePolling();
@@ -332,7 +332,7 @@ class _StripeConnectSetupState extends State<StripeConnectSetup> with SingleTick
                   ),
                   TextButton(
                       onPressed: () {
-                        MixpanelManager().track('Stripe Connect Later');
+                        
                         provider.stopStripePolling();
                         Navigator.pop(context);
                       },
@@ -401,7 +401,7 @@ class _StripeConnectSetupState extends State<StripeConnectSetup> with SingleTick
                   AnimatedLoadingButton(
                     text: "Update Stripe Details",
                     onPressed: () async {
-                      MixpanelManager().track('Stripe Connect Update');
+                      
                       var url = await provider.connectStripe();
                       if (url != null) {
                         provider.startStripePolling();

@@ -13,7 +13,7 @@ import 'package:omi/providers/home_provider.dart';
 import 'package:omi/pages/persona/twitter/social_profile.dart';
 import 'package:omi/utils/analytics/mixpanel.dart';
 import 'package:omi/utils/other/temp.dart';
-import 'package:posthog_flutter/posthog_flutter.dart';
+
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -264,9 +264,7 @@ class _PersonaProfilePageState extends State<PersonaProfilePage> {
                               padding: const EdgeInsets.symmetric(horizontal: 16),
                               child: TextButton(
                                 onPressed: () async {
-                                  await Posthog().capture(eventName: 'share_persona_clicked', properties: {
-                                    'persona_username': persona.username ?? '',
-                                  });
+                                  await 
                                   MixpanelManager()
                                       .personaShared(personaId: persona.id, personaUsername: persona.username);
                                   Share.share(
@@ -630,7 +628,7 @@ class _PersonaProfilePageState extends State<PersonaProfilePage> {
                     children: [
                       ElevatedButton(
                         onPressed: () async {
-                          await Posthog().capture(eventName: 'i_dont_have_device_clicked');
+                          await 
                           await launchUrl(Uri.parse('https://www.omi.me/?_ref=omi_persona_flow'));
                         },
                         style: ElevatedButton.styleFrom(

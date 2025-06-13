@@ -3,14 +3,11 @@ import 'dart:async';
 import 'package:omi/backend/preferences.dart';
 import 'package:omi/env/env.dart';
 import 'package:omi/utils/platform/platform_service.dart';
-import 'package:intercom_flutter/intercom_flutter.dart';
 
 class IntercomManager {
-  static final IntercomManager _instance = IntercomManager._internal();
+  static final IntercomManager _instance = 
   static IntercomManager get instance => _instance;
   static final SharedPreferencesUtil _preferences = SharedPreferencesUtil();
-
-  IntercomManager._internal();
 
   Intercom get intercom => Intercom.instance;
 

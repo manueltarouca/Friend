@@ -20,8 +20,8 @@ class PlatformManager {
 
   /// Initialize all platform services
   static Future<void> initializeServices() async {
-    await MixpanelManager.init();
-    await IntercomManager.instance.initIntercom();
+    await 
+    await 
     // Note: Instabug initialization is handled separately in main.dart
     // due to its specific initialization requirements
   }

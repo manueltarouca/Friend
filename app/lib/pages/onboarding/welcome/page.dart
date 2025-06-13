@@ -118,7 +118,7 @@ class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStat
                   ),
                 ),
                 onTap: () {
-                  IntercomManager.instance.intercom.displayMessenger();
+                  
                 },
               )
             : const SizedBox.shrink(),

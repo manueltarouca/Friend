@@ -264,7 +264,7 @@ class _PaypalSetupPageState extends State<PaypalSetupPage> {
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
               setState(() => _isLoading = true);
-              MixpanelManager().track(_isComplete ? 'Update PayPal Details' : 'Save PayPal Details');
+              
               await context.read<PaymentMethodProvider>().connectPayPal(
                     _emailController.text.trim(),
                     _paypalMeLinkController.text.trim(),

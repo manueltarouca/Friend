@@ -397,7 +397,7 @@ class _FirmwareUpdateState extends State<FirmwareUpdate> with FirmwareMixin {
             if (updateMessage == '0') ...[
               TextButton.icon(
                 onPressed: () async {
-                  await IntercomManager.instance.displayFirmwareUpdateArticle();
+                  await 
                 },
                 icon: Icon(Icons.help_outline, color: Colors.white.withOpacity(0.8)),
                 label: Text(
